@@ -9,6 +9,7 @@ import C from '../controllers/anasayfaC';
 import{anasayfaS as S } from './stil';
 import {View as ViewA} from 'react-native-animatable';
 import temaH from '../helper/temaH';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 class Anasayfa extends React.Component {
    
     componentDidMount = C.cDMount;
@@ -26,33 +27,53 @@ class Anasayfa extends React.Component {
         );
     }
 
-    notlar(){
-        return(
+    notlar() {
+        return (
             <View style={S.notlarK}>
                 {this.not()}
                 {this.not()}
                 {this.not()}
             </View>
-        )
+        );
     }
 
-    not(){
-        return(
-            <ViewA animation={'bounceIn'} delay={350} style={S.notK}>
-                <Text>Do Lorem nostrud anim ipsum duis laborum nulla labore magna nostrud in est dolor. Proident fugiat exercitation ut reprehenderit. Est nulla mollit duis est sit. Anim amet irure non ad excepteur aliqua duis.</Text>
-            
-                <View style = {S.notButonlarK}> 
 
-                    <Ikon 
-                        is={'AD'} //ikonset
-                        i={'delete'} //ikon name
-                        c={'red'} //color
-                        s={32} //size
-                    />
+    not() {
+        return (
+            <ViewA animation={'bounceIn'} delay={350} style={S.notK}>
+                <Text>Occaecat sit eiusmod pariatur ad consectetur. Occaecat sit eiusmod pariatur ad consectetur.</Text>
+
+
+
+                <View style={S.notButonlarK}>
+                    <TouchableOpacity style={S.butonlarAcKapaButon}>
+                        <Ikon
+                            is={'AD'} //ikonset
+                            i={'left'} //ikon name
+                            c={'black'} //color
+                            s={tlfnH.W(7)} //size
+                        />
+                    </TouchableOpacity>
+
+                    {this.notButon()}
+                    {this.notButon()}
+                    {this.notButon()}
+                    {this.notButon()}
                 </View>
-            
             </ViewA>
-        )
+        );
+    }
+    notButon() {
+        return (
+            <TouchableOpacity style={S.notButonK}>
+                <Ikon
+                    is={'AntDesign'} //ikonset
+                    i={'delete'} //ikon name
+                    c={temaH.renkler.r2} //color
+                    s={tlfnH.W(7)} //size
+                />
+            </TouchableOpacity>
+        );
     }
 
     render() {

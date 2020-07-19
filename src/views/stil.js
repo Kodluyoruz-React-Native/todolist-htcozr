@@ -42,19 +42,38 @@ export const anasayfaS = StyleSheet.create({
         justifyContent: 'center',
 
     },
-    notlarK:{
-        borderWidth:1,
-        borderColor:'red',
-        flex:1,
-        marginTop: H(3),
-    },
-    notK:{
-        backgroundColor: R.r1,
-        marginTop: H(1.2),
-        marginBottom: H(1.2),
-        padding: W(2)
-    },
-    notButonlarK:{
-        borderWidth:1
-    }
+    notlarK: {
+		marginTop: H(3),
+		flex: 1
+	},
+	notK: {
+		backgroundColor: R.r1,
+		marginTop: H(1.2),
+		marginBottom: H(1.2),
+		padding: W(2),
+		paddingBottom: W(7),
+	},
+	notButonlarK: {
+		flexDirection: 'row',
+		position: 'absolute',
+		bottom: -10,
+		right: 10,
+		backgroundColor: R.r1,
+		borderRadius: 5,
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingRight: 5,
+		backgroundColor: R.r1,
+		borderWidth: 1,
+		borderColor: 'white'
+	},
+	butonlarAcKapaButon: {
+		alignSelf: 'center',
+		marginRight: 5
+	},
+	notButonK: {
+		marginBottom: 5,
+		marginRight: 3,
+		marginLeft: 3
+	}
 });
