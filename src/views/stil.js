@@ -53,5 +53,8 @@ export const anasayfaS = StyleSheet.create({
         marginTop: H(1.2),
         marginBottom: H(1.2),
         padding: W(2)
+    },
+    notButonlarK:{
+        borderWidth:1
     }
 });

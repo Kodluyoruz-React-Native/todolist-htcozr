@@ -3,9 +3,12 @@ import { View, Text } from 'react-native';
 import { observer } from 'mobx-react';
 import Resim from '../components/Resim';
 import tlfnH from '../helper/tlfnH';
+import Ikon from '../components/Ikon';
+
 import C from '../controllers/anasayfaC';
 import{anasayfaS as S } from './stil';
 import {View as ViewA} from 'react-native-animatable';
+import temaH from '../helper/temaH';
 class Anasayfa extends React.Component {
    
     componentDidMount = C.cDMount;
@@ -37,6 +40,17 @@ class Anasayfa extends React.Component {
         return(
             <ViewA animation={'bounceIn'} delay={350} style={S.notK}>
                 <Text>Do Lorem nostrud anim ipsum duis laborum nulla labore magna nostrud in est dolor. Proident fugiat exercitation ut reprehenderit. Est nulla mollit duis est sit. Anim amet irure non ad excepteur aliqua duis.</Text>
+            
+                <View style = {S.notButonlarK}> 
+
+                    <Ikon 
+                        is={'AD'} //ikonset
+                        i={'delete'} //ikon name
+                        c={'red'} //color
+                        s={32} //size
+                    />
+                </View>
+            
             </ViewA>
         )
     }
