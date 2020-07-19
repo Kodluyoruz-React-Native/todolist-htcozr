@@ -67,7 +67,7 @@ class Anasayfa extends React.Component {
         return (
             <TouchableOpacity style={S.notButonK}>
                 <Ikon
-                    is={'AntDesign'} //ikonset
+                    is={'AD'} //ikonset
                     i={'delete'} //ikon name
                     c={temaH.renkler.r2} //color
                     s={tlfnH.W(7)} //size
