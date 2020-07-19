@@ -1,25 +1,29 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { observer } from 'mobx-react';
+import { View as ViewA } from 'react-native-animatable';
+
+
 import Resim from '../components/Resim';
-import tlfnH from '../helper/tlfnH';
 import Ikon from '../components/Ikon';
 
-import C from '../controllers/anasayfaC';
-import{anasayfaS as S } from './stil';
-import {View as ViewA} from 'react-native-animatable';
-import temaH from '../helper/temaH';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-class Anasayfa extends React.Component {
-   
-    componentDidMount = C.cDMount;
-    componentDidUpdate= C.cDUpdate;
-    componentWillUnmount= C.cWUnmount;
+import tlfnH from '../helper/tlfnH';
 
-    ustAlan(){
-        const sa = C.splashAktif;
+import C from '../controllers/anasayfaC';
+
+import { anasayfaS as S } from './stil';
+import temaH from '../helper/temaH';
+
+class Anasayfa extends React.Component {
+    componentDidMount = C.cDMount;
+    componentDidUpdate = C.cDUpdate;
+    componentWillUnmount = C.cWUnmount;
+
+    ustAlan() {
+        //const sa = C.splashAktif;
+
         return (
-            <View style={[S.ustAlanK /*, { display: sa ? 'none' : 'flex' }*/]}>
+            <View style={[S.ustAlanK/*, { display: sa ? 'none' : 'flex' }*/]}>
                 <Text style={S.ustAlanY}>lorem ipsum dolar sit amet</Text>
                 <Text style={S.ustAlanY}>lorem ipsum dolar</Text>
                 <Text style={S.ustAlanY}>lorem ipsum dolar sit</Text>
@@ -27,38 +31,47 @@ class Anasayfa extends React.Component {
         );
     }
 
+
     notlar() {
         return (
             <View style={S.notlarK}>
-                {this.not()}
-                {this.not()}
-                {this.not()}
+                {this.not(0)}
+                {this.not(1)}
+                {this.not(2)}
             </View>
         );
     }
 
 
-    not() {
+    not(i) {
+        const butonlarAcik = C.notButonlarAcik === i;
+
+        let okIkon;
+        if (C.notButonlarAcKapaYon && butonlarAcik) okIkon = '-270';
+        else if (butonlarAcik) okIkon = '-180';
+        else okIkon = '0';
+
         return (
-            <ViewA animation={'bounceIn'} delay={350} style={S.notK}>
+            <ViewA key={i} animation={'bounceIn'} delay={350} style={S.notK}>
                 <Text>Occaecat sit eiusmod pariatur ad consectetur. Occaecat sit eiusmod pariatur ad consectetur.</Text>
 
-
-
                 <View style={S.notButonlarK}>
-                    <TouchableOpacity style={S.butonlarAcKapaButon}>
+                    <TouchableOpacity style={S.butonlarAcKapaButon} onPress={() => C.setNotButonlarAcik(i)}>
                         <Ikon
-                            is={'AD'} //ikonset
+                            is={'AntDesign'} //ikonset
                             i={'left'} //ikon name
                             c={'black'} //color
                             s={tlfnH.W(7)} //size
+                            rotate={okIkon}
                         />
                     </TouchableOpacity>
 
-                    {this.notButon()}
-                    {this.notButon()}
-                    {this.notButon()}
-                    {this.notButon()}
+                    <View style={[S.notButonlarAK, { display: butonlarAcik ? 'flex' : 'none' }]}>
+                        {this.notButon()}
+                        {this.notButon()}
+                        {this.notButon()}
+                        {this.notButon()}
+                    </View>
                 </View>
             </ViewA>
         );
@@ -67,7 +80,7 @@ class Anasayfa extends React.Component {
         return (
             <TouchableOpacity style={S.notButonK}>
                 <Ikon
-                    is={'AD'} //ikonset
+                    is={'AntDesign'} //ikonset
                     i={'delete'} //ikon name
                     c={temaH.renkler.r2} //color
                     s={tlfnH.W(7)} //size
@@ -76,24 +89,23 @@ class Anasayfa extends React.Component {
         );
     }
 
+
     render() {
         const sa = C.splashAktif;
 
         return (
             <View style={[S.K, sa && S.K2]}>
+
                 {!sa && this.ustAlan()}
-
-
                 {!sa && this.notlar()}
 
 
                 <View style={!sa && S.logoK}>
-                    <Resim 
-                    source= {require('../../assets/logo.png')}
-                    height={tlfnH.W(sa ? 60 : 20)}
+                    <Resim
+                        source={require('../../assets/logo/logo.png')}
+                        height={tlfnH.W(sa ? 60 : 20)}
                     />
                 </View>
-               
             </View>
         );
     }
