@@ -1,20 +1,28 @@
-import { observable, action, decorate} from 'mobx';
+import { observable, action, decorate } from 'mobx';
 import { Dimensions, Platform } from 'react-native';
 
-class tlfnH{
-    w= Dimensions.get('window').width;
-    h= Dimensions.get('window').height;
+class tlfnH {
+    w = Dimensions.get('window').width;
+    h = Dimensions.get('window').height;
 
-    W= d => (this.w*d/100);
-    H= d => (this.h*d/100);
+    //W(d) { return this.w * d / 100;  }
+    W = d => this.w * d / 100;
+    H = d => this.h * d / 100;
 
 
-    android = Platform.OS ==='android';
+
+    android = Platform.OS === 'android';
     ios = Platform.OS === 'ios';
+
+
+    klavye = { durum: false, h: 0 };
+    klavyeAcildi = d => this.klavye = { durum: true, h: d.endCoordinates.height };
+    klavyeKapandi = () => this.klavye = { durum: false, h: 0 };
 }
 
 decorate(
-    tlfnH,{
+    tlfnH,
+    {
         w: observable,
         h: observable,
 
@@ -23,7 +31,12 @@ decorate(
 
         android: observable,
         ios: observable,
+
+        klavye: observable,
+        klavyeAcildi: action,
+        klavyeKapandi: action
     }
-)
+);
+
 
 export default new tlfnH();
